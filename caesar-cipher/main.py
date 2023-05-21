@@ -31,7 +31,7 @@ restart = True
 while restart:
     direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
     text = input("Type your message:\n").lower()
-    shift = int(input("Type the shift number:\n"))
+    shift = int(input("Type the shift number:\n")) % 26
     caesar(text, shift, direction)
     retry = input("Do you want to try again? Yes / No\n").lower()
     if retry == 'no':
