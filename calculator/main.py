@@ -25,10 +25,17 @@ operations = {
     "*": multiply,
     "/": divide,
 }
-
+exit_calculator = False
 num1 = int(input("What's the first number? "))
 display(operations)
-operation = input("Pick an operation from the line above. ")
-num2 = int(input("What's the second number? "))
-result = operations[operation](num1, num2)
-print(f"{num1} {operation} {num2} = {result}")
+while not exit_calculator:
+    operation = input("Pick an operation: ")
+    num2 = int(input("What's the next number? "))
+    result = operations[operation](num1, num2)
+    print(f"{num1} {operation} {num2} = {result}")
+    another_calculation = input(f"Type 'y' to continue calculating with {result}, or type 'n' to exit: ").lower()
+    if another_calculation == 'n':
+        exit_calculator = True
+    else:
+        num1 = result
+
