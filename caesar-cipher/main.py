@@ -10,11 +10,14 @@ def caesar(input_text, shift_value, shift_direction):
     if shift_direction == 'decode':
         shift_value *= -1
     for char in input_text:
-        index = alphabet.index(char)
-        shifted_index = index + shift_value
-        if shifted_index > 25:
-            shifted_index = shifted_index - 26
-        caesar_text += alphabet[shifted_index]
+        if char in alphabet:
+            index = alphabet.index(char)
+            shifted_index = index + shift_value
+            if shifted_index > 25:
+                shifted_index = shifted_index - 26
+            caesar_text += alphabet[shifted_index]
+        else:
+            caesar_text += char
 
     if shift_direction == 'encode':
         print(f"The encoded text is {caesar_text}")
@@ -23,7 +26,13 @@ def caesar(input_text, shift_value, shift_direction):
 
 
 print(logo)
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
-caesar(text, shift, direction)
+restart = True
+
+while restart:
+    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    text = input("Type your message:\n").lower()
+    shift = int(input("Type the shift number:\n"))
+    caesar(text, shift, direction)
+    retry = input("Do you want to try again? Yes / No\n").lower()
+    if retry == 'no':
+        restart = False
